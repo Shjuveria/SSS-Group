@@ -1,0 +1,1942 @@
+:root{
+  --bg:#0b0f16;
+  --paper:#f6f4ef;
+  --ice:#e9f1f8;
+  --ink:#0b0f16;
+  --gold:#c8a45d;
+  --max: 1180px;
+}
+
+*{box-sizing:border-box}
+
+/* IMPORTANT: prevent horizontal scrolling */
+html,body{
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
+
+body{
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: var(--paper);
+  color: #111;
+  line-height:1.6;
+}
+
+a{color:inherit;text-decoration:none}
+img{max-width:100%; display:block}
+
+.container{
+  max-width:var(--max);
+  margin:0 auto;
+  padding: 0 22px;
+}
+
+.section{padding: 84px 0}
+.center{text-align:center}
+
+/* headings */
+.h-eyebrow{
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(11,15,22,0.62);
+  margin: 0 0 10px;
+}
+.h2{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 44px;
+  line-height: 1.12;
+  letter-spacing: -0.4px;
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+.gold-rule{
+  width: 56px;
+  height: 2px;
+  background: var(--gold);
+  border-radius:999px;
+  margin: 14px auto 0;
+}
+.lead{
+  max-width: 78ch;
+  font-size: 17px;
+  color: rgba(11,15,22,0.72);
+  margin: 0;
+}
+
+/* NAV (match 2nd image: clean, right-aligned links, no big buttons) */
+.nav{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  z-index:50;
+  background: rgba(11,15,22,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 16px 0;
+  gap:16px;
+}
+.brand{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  font-weight: 800;
+}
+.brand .sss{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 26px;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.brand .inv{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 26px;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+.nav-links{
+  display:flex;
+  gap: 22px;
+  align-items:center;
+}
+.nav-links a{
+  color: rgba(255,255,255,0.78);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 6px;
+  border-radius: 10px;
+}
+.nav-links a:hover{color:#fff}
+.nav-links a.active{
+  color: var(--gold);
+  position: relative;
+}
+.nav-links a.active::after{
+  content:"";
+  position:absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2px;
+  width: 34px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 999px;
+}
+
+/* buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: transparent;
+  color: #fff;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  transition: 0.18s ease;
+  border-color: rgba(255,255,255,0.40);
+}
+.btn-outline{background: transparent; color:#fff}
+.btn-outline:hover{background: rgba(255,255,255,0.06)}
+.btn-gold{
+  border: 1px solid rgba(200,164,93,0.55);
+  background: var(--gold);
+  color: #111;
+}
+.btn-gold:hover{filter: brightness(1.04)}
+.btn-outline-dark{
+  border: 2px solid rgba(11,15,22,0.55);
+  background: transparent;
+  color: #111;
+  padding: 16px 22px;
+  border-radius: 10px;
+}
+.btn-outline-dark:hover{border-color: rgba(11,15,22,0.8)}
+
+/* HERO (fix: fit to screen + left content + no overflow) */
+.hero{
+  position: relative;
+  color: #fff;
+  background: var(--bg);
+  overflow:hidden;
+}
+
+/* Full screen hero with nav offset */
+.hero-full{
+  height: 100vh;
+  width: 100%;
+  display:flex;
+  align-items:center;
+  padding-top: 76px; /* fixed nav height */
+}
+
+.hero-full::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11,15,22,0.92) 0%,
+      rgba(11,15,22,0.78) 42%,
+      rgba(11,15,22,0.55) 100%
+    ),
+    url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2600&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: none; /* removes accidental stretching */
+}
+
+/* Place text on left like your reference */
+.hero-inner{
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-copy{
+  max-width: 720px;
+  text-align: left;
+  margin-left: 0;     /* ensures it stays left */
+  padding-right: 18px;
+}
+
+.hero-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(44px, 5.6vw, 74px);
+  line-height: 1.05;
+  letter-spacing: -0.8px;
+  margin: 0 0 18px;
+  color: #fff;
+}
+
+.hero-title .gold{
+  color: var(--gold);
+  font-style: italic;
+}
+
+.hero-sub{
+  margin:0;
+  max-width: 62ch;
+  font-size: 18px;
+  color: rgba(255,255,255,0.78);
+}
+
+.hero-actions{
+  display:flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+  align-items:center;
+}
+
+/* Light section */
+.bg-light{
+  background: linear-gradient(180deg, #f6f4ef 0%, #f0f3f6 100%);
+  border-top: 1px solid rgba(11,15,22,0.06);
+}
+
+/* Cards */
+.grid-3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 36px;
+}
+.card{
+  background: #fff;
+  border: 1px solid rgba(11,15,22,0.08);
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 18px 40px rgba(11,15,22,0.08);
+  min-height: 240px;
+}
+.icon-box{
+  width: 58px; height: 58px;
+  border-radius: 16px;
+  background: #0b0f16;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom: 18px;
+}
+.icon-box svg{width: 26px; height: 26px; stroke: var(--gold)}
+.card h3{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 24px;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.card p{
+  margin:0;
+  color: rgba(11,15,22,0.64);
+  font-size: 15px;
+}
+
+/* Our Strategic Focus (dark split + images) */
+.section-dark{
+  background: var(--bg);
+  color: #fff;
+}
+.focus-grid{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 36px;
+  align-items:center;
+}
+.focus-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 54px;
+  line-height: 1.05;
+  margin: 0 0 22px;
+}
+.focus-title span{color: var(--gold); font-style: italic;}
+.focus-block{
+  padding: 18px 0 18px 18px;
+  border-left: 2px solid rgba(200,164,93,0.55);
+  margin-bottom: 16px;
+}
+.focus-label{
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(200,164,93,0.85);
+  margin-bottom: 8px;
+}
+.focus-value{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 28px;
+  margin: 0;
+}
+.focus-text{
+  color: rgba(255,255,255,0.78);
+  max-width: 60ch;
+  font-size: 16px;
+}
+.media-frame{
+  border: 1px solid rgba(200,164,93,0.25);
+  padding: 18px;
+  border-radius: 14px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  background: rgba(255,255,255,0.02);
+}
+.media-a{border-radius: 10px; height: 320px; object-fit: cover;}
+.media-b{border-radius: 10px; height: 320px; object-fit: cover; margin-top: 44px;}
+
+/* Distinction (4 numbered cards) */
+.bg-ice{background: var(--ice);}
+.grid-4{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-top: 40px;
+}
+.num-card{
+  background:#fff;
+  border: 1px solid rgba(11,15,22,0.08);
+  border-radius: 10px;
+  padding: 34px 18px;
+  box-shadow: 0 18px 40px rgba(11,15,22,0.08);
+  min-height: 200px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap: 14px;
+}
+.num-dot{
+  width: 58px;
+  height: 58px;
+  border-radius: 999px;
+  background: #0b0f16;
+  color: var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 800;
+  transition: transform .25s ease;
+}
+.num-card p{
+  margin:0;
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-style: italic;
+  color:#111;
+  text-align:center;
+  line-height:1.35;
+}
+
+/* Portfolio section */
+.section-white{background:#fff;}
+
+/* Gold grid CTA band */
+.gold-grid{
+  background: var(--gold);
+  background-image:
+    linear-gradient(to right, rgba(11,15,22,0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11,15,22,0.09) 1px, transparent 1px);
+  background-size: 70px 70px;
+  padding: 64px 0;
+}
+.gold-grid-inner{
+  display:flex;
+  justify-content:center;
+}
+.gold-cta{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding: 22px 30px;
+  border-radius: 2px;
+  border: 1px solid rgba(11,15,22,0.55);
+  background: rgba(11,15,22,0.94);
+  color:#fff;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+/* Footer */
+.footer{
+  background: #0b0f16;
+  color: rgba(255,255,255,0.70);
+  padding: 34px 0;
+}
+.footer-big{padding-top: 70px;}
+.footer-cols{
+  display:grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 34px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.footer-brand{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  color:#fff;
+  font-size: 26px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.footer-title{
+  color:#fff;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+.footer-col a{
+  display:block;
+  margin: 10px 0;
+  color: rgba(255,255,255,0.70);
+}
+.footer-col a:hover{color:#fff}
+.footer-text{color: rgba(255,255,255,0.70)}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 18px;
+  padding: 18px 0 0;
+  font-size: 13px;
+}
+.footer-legal{display:flex; gap: 18px;}
+.footer-legal a{color: rgba(255,255,255,0.70)}
+.footer-legal a:hover{color:#fff}
+
+/* Card hover / click motion */
+.card, .num-card{
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  will-change: transform;
+  cursor: pointer;
+}
+.card:hover, .num-card:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 28px 70px rgba(11,15,22,0.18);
+  border-color: rgba(200,164,93,0.45);
+}
+.card:active, .num-card:active{
+  transform: translateY(-4px) scale(0.98);
+  box-shadow: 0 18px 45px rgba(11,15,22,0.14);
+}
+.num-card:hover .num-dot{
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .grid-3{grid-template-columns: 1fr}
+  .focus-grid{grid-template-columns: 1fr}
+  .media-b{margin-top: 0}
+  .grid-4{grid-template-columns: 1fr}
+  .footer-cols{grid-template-columns: 1fr}
+}
+
+/* =========================
+   ABOUT PAGE - SECTION 1
+========================= */
+
+/* Offset because nav is fixed */
+.about-intro{
+  padding-top: 76px; /* same as your nav offset */
+  background: var(--paper);
+}
+
+.about-intro-grid{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 22px;
+  min-height: calc(100vh - 76px);
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 34px;
+  align-items: center;
+}
+
+/* Left content */
+.about-intro-copy{
+  padding: 70px 0;
+  text-align: left;
+}
+
+.about-kicker{
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(11,15,22,0.55);
+  margin: 0 0 12px;
+}
+
+.about-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(38px, 4.2vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.6px;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+.about-text{
+  margin: 0 0 16px;
+  max-width: 60ch;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: rgba(11,15,22,0.65);
+}
+
+/* Right image */
+.about-intro-media{
+  display: flex;
+  justify-content: flex-end;
+  padding: 70px 0;
+}
+
+.about-photo{
+  position: relative;
+  width: min(620px, 100%);
+  border-radius: 0;            /* screenshot has sharp edges */
+  overflow: hidden;
+  background: #ddd;
+}
+
+.about-photo img{
+  width: 100%;
+  height: min(620px, 76vh);
+  object-fit: cover;
+  display: block;
+}
+
+/* Bottom badge */
+.about-badge{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translate(0, 0);
+  background: rgba(11,15,22,0.92);
+  padding: 18px 22px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  border-right: 1px solid rgba(255,255,255,0.10);
+  width: 320px;
+}
+
+.about-badge-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 28px;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.about-badge-sub{
+  margin-top: 6px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.72);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .about-intro-grid{
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 18px;
+  }
+
+  .about-intro-copy{
+    padding: 46px 0 18px;
+  }
+
+  .about-intro-media{
+    padding: 0 0 46px;
+    justify-content: flex-start;
+  }
+
+  .about-photo img{
+    height: 420px;
+  }
+
+  .about-badge{
+    width: min(320px, 92%);
+  }
+}
+/* =========================
+   ABOUT PAGE - OUR APPROACH
+========================= */
+.about-approach{
+  background: #eef3f7;
+  padding: 88px 0 30px;          /* slightly tighter bottom to reduce gap */
+  border-top: 1px solid rgba(11,15,22,0.06);
+}
+
+.about-approach-inner{
+  text-align: center;
+}
+
+.about-approach-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(28px, 2.35vw, 38px);  /* slightly smaller */
+  margin: 0;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+
+.about-approach-sub{
+  margin: 14px auto 0;
+  max-width: 68ch;
+  color: rgba(11,15,22,0.60);
+  font-size: 15.5px;             /* slightly smaller */
+  line-height: 1.65;
+}
+
+/* Card grid */
+.approach-grid{
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Cards */
+.approach-card{
+  background: #fff;
+  border: 1px solid rgba(11,15,22,0.08);
+  border-radius: 2px;
+  padding: 32px 28px;
+  text-align: left;
+  box-shadow: 0 14px 30px rgba(11,15,22,0.06);
+  min-height: 200px;
+
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  will-change: transform;
+}
+
+.approach-card h3{
+  margin: 0 0 12px;
+  font-size: 15.5px;             /* smaller to match screenshot */
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.approach-card p{
+  margin: 0;
+  color: rgba(11,15,22,0.58);
+  font-size: 14px;               /* slightly smaller */
+  line-height: 1.7;
+}
+
+/* Hover (works even without tilt.js) */
+.approach-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 24px 55px rgba(11,15,22,0.12);
+  border-color: rgba(11,15,22,0.14);
+}
+
+.approach-quote{
+  margin: 28px auto 0;
+  max-width: 76ch;
+  font-style: italic;
+  font-size: 15.5px;
+  color: rgba(11,15,22,0.65);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .approach-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px){
+  .approach-grid{ grid-template-columns: 1fr; }
+  .about-approach{ padding: 70px 0 55px; }
+}
+
+/* =========================
+   ABOUT PAGE - VISION
+========================= */
+
+.about-vision{
+  background: #faf8f4;
+  padding: 86px 0 60px;        /* reduced top to close the gap */
+  border-top: 1px solid rgba(11,15,22,0.06);
+}
+
+.about-vision-inner{
+  text-align: center;            /* keep centered */
+}
+
+.about-vision-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(28px, 2.35vw, 38px);
+  letter-spacing: -0.3px;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+.about-vision-text{
+  max-width: 68ch;
+  margin: 0 auto 34px;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: rgba(11,15,22,0.65);
+}
+
+/* CTA button */
+.vision-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 28px;
+  background: #0b0f16;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all .25s ease;
+  text-decoration: none;
+}
+
+.vision-btn:hover{
+  transform: translateY(-2px);
+  background: #121826;
+}
+
+@media (max-width: 640px){
+  .about-vision{
+    padding: 76px 0 90px;
+  }
+  .about-vision-text{
+    font-size: 16px;
+  }
+}
+/* =========================
+   STRATEGY PAGE - SECTION 1 (HERO)
+========================= */
+
+.strategy-hero{
+  padding-top: 76px; /* offset for fixed nav */
+  background: var(--paper);
+  border-bottom: 1px solid rgba(11,15,22,0.06);
+}
+
+.strategy-hero-inner{
+  text-align: center;
+  padding: 84px 18px 78px; /* slightly tighter than before */
+}
+
+.strategy-kicker{
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  font-size: 11.5px;       /* smaller */
+  font-weight: 700;
+  color: rgba(11,15,22,0.55);
+  margin: 0 0 14px;
+}
+
+.strategy-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(36px, 4vw, 60px); /* smaller */
+  line-height: 1.05;
+  letter-spacing: -0.6px;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+.strategy-sub{
+  margin: 0 auto;
+  max-width: 74ch;
+  font-size: 17px;         /* smaller */
+  line-height: 1.65;
+  color: rgba(11,15,22,0.65);
+}
+
+/* Mobile */
+@media (max-width: 640px){
+  .strategy-hero-inner{ padding: 66px 16px 60px; }
+  .strategy-title{ font-size: clamp(30px, 8vw, 44px); }
+  .strategy-sub{ font-size: 16px; }
+}
+
+
+/* =========================
+   STRATEGY PAGE - SECTION 2 (ASSET SELECTION)
+   Layout: image left, text right (like screenshot)
+========================= */
+
+.strategy-asset{
+  background: #faf8f4; /* warm off-white */
+  padding: 70px 0 40px; /* small gap from hero */
+}
+
+.strategy-asset-grid{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr; /* image larger like screenshot */
+  gap: 56px;
+  align-items: center;
+}
+
+/* Image */
+.strategy-asset-media{
+  border-radius: 2px;
+  overflow: hidden;
+  background: #ddd;
+  box-shadow: 0 18px 40px rgba(11,15,22,0.08);
+}
+
+.strategy-asset-media img{
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Right content */
+.strategy-asset-content{
+  text-align: left;
+}
+
+.strategy-asset-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(26px, 2.6vw, 34px); /* smaller */
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+/* Checklist */
+.strategy-checklist{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.strategy-checklist li{
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15.5px;  /* smaller */
+  line-height: 1.65;
+  color: rgba(11,15,22,0.66);
+}
+
+/* Check icon */
+.strategy-check{
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  border-radius: 50%;
+  background: #0b0f16;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  transform: translateY(2px);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .strategy-asset{
+    padding: 54px 0 70px;
+  }
+
+  .strategy-asset-grid{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .strategy-asset-media img{
+    height: 340px;
+  }
+
+  .strategy-asset-content{
+    text-align: left;
+  }
+}
+/* =========================
+   STRATEGY PAGE - VALUE CREATION
+   (Matched to Asset Selection)
+========================= */
+
+.strategy-value{
+  background: #faf8f4;
+  padding: 30px 0 60px;   /* ⬅ reduced top padding */
+  border-top: none;       /* ⬅ remove divider to reduce visual gap */
+}
+
+.strategy-value-grid{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 22px;
+  display: grid;
+  grid-template-columns: 0.90fr 1.10fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* Left content */
+.strategy-value-content{
+  text-align: left;
+}
+
+/* ⬅ SAME AS ASSET SELECTION */
+.strategy-value-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(26px, 2.6vw, 34px); /* MATCHED */
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+
+/* checklist */
+.strategy-value-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.strategy-value-list li{
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15.5px;      /* MATCHED */
+  line-height: 1.65;
+  color: rgba(11,15,22,0.66);
+}
+
+/* check icon */
+.strategy-value-check{
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  border-radius: 50%;
+  background: #0b0f16;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  transform: translateY(2px);
+}
+
+/* Right image */
+.strategy-value-media{
+  border-radius: 2px;
+  overflow: hidden;
+  background: #ddd;
+  box-shadow: 0 18px 40px rgba(11,15,22,0.08);
+}
+
+.strategy-value-media img{
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .strategy-value{
+    padding: 40px 0 60px; /* ⬅ tighter on mobile */
+  }
+
+  .strategy-value-grid{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .strategy-value-media img{
+    height: 340px;
+  }
+}
+/* =========================
+   STRATEGY – RISK MANAGEMENT
+========================= */
+
+.strategy-risk{
+  background: #faf8f4;           /* same warm off-white theme */
+  padding: 45px 0 60px;
+  border-top: 1px solid rgba(11,15,22,0.06);
+}
+
+.strategy-risk-inner{
+  text-align: center;
+}
+
+.strategy-risk-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(30px, 2.6vw, 40px);
+  letter-spacing: -0.3px;
+  margin: 0 0 38px;
+  color: #0b0f16;
+}
+
+/* ✅ 4 cards side-by-side */
+.risk-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* Card style (same dark look as your screenshot section) */
+.risk-card{
+  background: #0b1420;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 2px;
+  padding: 26px 22px;
+  text-align: left;
+
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  will-change: transform;
+}
+
+.risk-card:hover{
+  box-shadow: 0 26px 55px rgba(0,0,0,0.22);
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* ✅ text visible (your issue right now) */
+.risk-label{
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.risk-card p{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.82);
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .risk-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px){
+  .risk-grid{ grid-template-columns: 1fr; }
+  .strategy-risk{ padding: 55px 0 55px; }
+}
+/* =========================
+   STRATEGY – HOLD & GROWTH (LAST CTA)
+========================= */
+
+.strategy-hold{
+  background: #eef3f7; /* same cool light blue-gray */
+  padding: 90px 0 100px;
+  border-top: 1px solid rgba(11,15,22,0.06);
+}
+
+.strategy-hold-inner{
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.strategy-hold-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(28px, 2.6vw, 40px); /* premium + not oversized */
+  line-height: 1.12;
+  letter-spacing: -0.35px;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+.strategy-hold-text{
+  margin: 0 auto 34px;
+  max-width: 78ch;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16.5px;  /* matches your other sections */
+  line-height: 1.75;
+  color: rgba(11,15,22,0.65);
+}
+
+/* CTA button – matches your style */
+.strategy-hold-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 30px;
+  min-width: 300px; /* looks like screenshot */
+  background: #0b0f16;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 2px;
+  text-decoration: none;
+  box-shadow: 0 14px 28px rgba(11,15,22,0.18);
+  transition: transform .22s ease, background .22s ease, box-shadow .22s ease;
+}
+
+.strategy-hold-btn:hover{
+  transform: translateY(-2px);
+  background: #121826;
+  box-shadow: 0 22px 42px rgba(11,15,22,0.22);
+}
+
+/* Mobile */
+@media (max-width: 640px){
+  .strategy-hold{ padding: 70px 0 80px; }
+  .strategy-hold-text{ font-size: 16px; }
+  .strategy-hold-btn{ min-width: 240px; width: 100%; max-width: 320px; }
+}
+/* =========================
+   PORTFOLIO PAGE – SECTION 1 (REFINED)
+========================= */
+
+.portfolio-hero{
+  padding-top: 76px;
+  background: #faf8f4;
+  border-bottom: 1px solid rgba(11,15,22,0.06);
+}
+
+.portfolio-hero-inner{
+  text-align: center;
+  padding: 80px 18px 70px; /* ⬅ reduced */
+}
+
+.portfolio-kicker{
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 10.5px;        /* ⬅ smaller */
+  font-weight: 800;
+  color: rgba(153, 122, 63, 0.85);
+  margin-bottom: 12px;
+}
+
+.portfolio-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(34px, 3.8vw, 56px); /* ⬅ BIG FIX */
+  line-height: 1.05;
+  letter-spacing: -0.6px;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+
+.portfolio-sub{
+  max-width: 72ch;
+  margin: 0 auto;
+  font-size: 16px;          /* ⬅ smaller */
+  line-height: 1.65;
+  color: rgba(11,15,22,0.62);
+}
+
+/* =========================
+   PORTFOLIO CARDS
+========================= */
+
+.portfolio-grid{
+  margin-top: 44px;         /* ⬅ tighter */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+
+.portfolio-card{
+  background: #fff;
+  border: 1px solid rgba(11,15,22,0.08);
+  border-radius: 2px;
+  padding: 28px 20px 26px;  /* ⬅ reduced */
+  box-shadow: 0 14px 30px rgba(11,15,22,0.07);
+  text-align: center;
+  min-height: 210px;
+
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+
+.portfolio-card:hover{
+  box-shadow: 0 22px 48px rgba(11,15,22,0.12);
+}
+
+/* Icon */
+.portfolio-icon{
+  width: 58px;              /* ⬅ smaller */
+  height: 58px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: #f2f5f8;
+  display: grid;
+  place-items: center;
+  color: rgba(11,15,22,0.85);
+}
+
+/* Card label */
+.portfolio-label{
+  font-size: 10px;          /* ⬅ smaller */
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(86, 132, 187, 0.75);
+  margin-bottom: 12px;
+}
+
+/* Card value */
+.portfolio-value{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-style: italic;
+  font-size: 15px;          /* ⬅ BIG FIX */
+  line-height: 1.35;
+  color: rgba(11,15,22,0.9);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px){
+  .portfolio-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 820px){
+  .portfolio-grid{ grid-template-columns: repeat(2, 1fr); }
+  .portfolio-title{ font-size: 42px; }
+}
+
+@media (max-width: 520px){
+  .portfolio-grid{ grid-template-columns: 1fr; }
+  .portfolio-title{ font-size: 34px; }
+}
+/* =========================
+   PORTFOLIO – ACTIVE INVESTMENTS
+========================= */
+
+.portfolio-active{
+  background: linear-gradient(145deg, #05080e, #0b0f16);
+  padding: 90px 0 100px; /* ⬅ tight spacing */
+}
+
+.portfolio-active-grid{
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* LEFT */
+.portfolio-active-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 32px; /* restrained */
+  letter-spacing: -0.4px;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.portfolio-active-text{
+  max-width: 44ch;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+}
+
+.portfolio-active-rule{
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: #c9a45c;
+  margin-top: 24px;
+}
+
+/* RIGHT CARD */
+.portfolio-active-card{
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  padding: 36px 38px;
+  border-left: 3px solid #c9a45c;
+}
+
+.portfolio-active-card-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 24px;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.portfolio-active-card-text{
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 18px;
+}
+
+.portfolio-active-quote{
+  font-size: 14px;
+  font-style: italic;
+  color: #c9a45c;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 980px){
+  .portfolio-active-grid{
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+/* =========================================================
+   PORTFOLIO HIGHLIGHTS (ONLY THIS SECTION)
+   ✅ Uses .portfolio-highlight-card so it will NOT affect
+   the top portfolio overview cards or other sections.
+========================================================= */
+
+.portfolio-highlights{
+  background: var(--paper, #faf8f4);
+  padding: 68px 0 86px; /* keep tight like screenshot */
+}
+
+.portfolio-highlights .container{
+  max-width: 1180px;
+}
+
+/* Title (center + underline) */
+.portfolio-highlights-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.1;
+  text-align: center;
+  color: var(--ink, #0b0f16);
+  margin: 0 0 46px;
+  position: relative;
+}
+
+.portfolio-highlights-title::after{
+  content: "";
+  display: block;
+  width: 140px;           /* underline length like screenshot */
+  height: 2px;
+  background: #c9a45c;    /* gold */
+  margin: 14px auto 0;
+}
+
+/* Grid (3 cards in a row) */
+.portfolio-highlights .portfolio-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 34px;
+  align-items: start;
+}
+
+/* Card */
+.portfolio-highlight-card{
+  background: #ffffff;
+  border: 1px solid rgba(11,15,22,0.06);
+  box-shadow: 0 18px 42px rgba(11,15,22,0.10);
+  border-radius: 4px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  will-change: transform;
+}
+
+/* Optional tilt / lift (simple, no JS needed) */
+.portfolio-highlight-card:hover{
+  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 28px 62px rgba(11,15,22,0.14);
+}
+
+/* Image */
+.portfolio-highlight-card img{
+  width: 100%;
+  height: 230px;          /* consistent crop like screenshot */
+  object-fit: cover;
+  display: block;
+}
+
+/* Body */
+.portfolio-highlight-card .portfolio-card-body{
+  padding: 26px 28px 30px;
+}
+
+/* Small uppercase eyebrow */
+.portfolio-highlight-card .ph-eyebrow{
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(201,164,92,0.95); /* gold */
+  margin-bottom: 10px;
+}
+
+/* Asset title */
+.portfolio-highlight-card h3{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--ink, #0b0f16);
+  margin: 0 0 8px;
+}
+
+/* Location */
+.portfolio-highlight-card .ph-location{
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(95,131,182,0.95); /* blue */
+  margin-bottom: 14px;
+}
+
+/* Divider */
+.portfolio-highlight-card hr{
+  border: none;
+  height: 1px;
+  background: rgba(11,15,22,0.08);
+  margin: 16px 0 18px;
+}
+
+/* Section label "TENANT PROFILE" */
+.portfolio-highlight-card .ph-subhead{
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(95,131,182,0.90);
+  margin-bottom: 8px;
+}
+
+/* Emphasized profile line */
+.portfolio-highlight-card em{
+  display: block;
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgba(11,15,22,0.92);
+  margin-bottom: 10px;
+}
+
+/* Description */
+.portfolio-highlight-card p{
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(11,15,22,0.64);
+}
+
+/* -------------------------
+   Responsive
+-------------------------- */
+@media (max-width: 1020px){
+  .portfolio-highlights-title{ font-size: 40px; }
+  .portfolio-highlights .portfolio-grid{ gap: 26px; }
+}
+
+@media (max-width: 900px){
+  .portfolio-highlights .portfolio-grid{
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .portfolio-highlight-card img{ height: 240px; }
+  .portfolio-highlights{ padding: 56px 0 70px; }
+}
+
+@media (max-width: 520px){
+  .portfolio-highlights-title{ font-size: 34px; }
+  .portfolio-highlights-title::after{ width: 110px; }
+  .portfolio-highlight-card .portfolio-card-body{ padding: 22px 20px 24px; }
+}
+/* =========================
+   PORTFOLIO – ACQUISITION CRITERIA
+========================= */
+
+.acq-criteria{
+  background: radial-gradient(1200px 520px at 25% 20%, rgba(201,164,92,0.10), transparent 60%),
+              linear-gradient(145deg, #05080e, #0b0f16);
+  padding: 92px 0 92px;
+}
+
+.acq-criteria-inner{
+  max-width: 1080px;
+}
+
+.acq-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-style: italic;
+  font-size: clamp(44px, 4.4vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -0.7px;
+  margin: 0 0 22px;
+  color: #ffffff;
+}
+
+.acq-title span{
+  color: #c9a45c;
+}
+
+.acq-sub{
+  max-width: 68ch;
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.75);
+  margin: 0 0 38px;
+}
+
+/* two-column bullet layout */
+.acq-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  margin-bottom: 44px;
+}
+
+.acq-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.acq-list li{
+  position: relative;
+  padding-left: 34px;
+  font-size: 18px;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.92);
+  margin: 14px 0;
+}
+
+/* dash marker */
+.acq-list li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.95em;
+  width: 16px;
+  height: 2px;
+  background: #c9a45c;
+  transform: translateY(-50%);
+  opacity: 0.95;
+}
+
+/* button */
+.acq-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #c9a45c;
+  color: #0b0f16;
+  padding: 16px 34px;
+  border-radius: 2px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 12px;
+  text-decoration: none;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.acq-btn:hover{
+  transform: translateY(-2px);
+  filter: brightness(0.95);
+}
+
+/* responsive */
+@media (max-width: 980px){
+  .acq-criteria{ padding: 78px 0 78px; }
+  .acq-grid{ grid-template-columns: 1fr; gap: 18px; }
+  .acq-sub{ font-size: 16.5px; }
+  .acq-list li{ font-size: 16.5px; }
+}
+/* =========================
+   PORTFOLIO – DISCLAIMER
+========================= */
+
+.portfolio-disclaimer{
+  background: #faf8f4; /* same light paper tone */
+  border-top: 1px solid rgba(11,15,22,0.06);
+  border-bottom: 1px solid rgba(11,15,22,0.06);
+  padding: 60px 0;
+}
+
+.portfolio-disclaimer p{
+  text-align: center;
+  max-width: 80ch;
+  margin: 0 auto;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(95,131,182,0.65);
+  line-height: 1.8;
+}
+/* =========================
+   CONTACT – SECTION 1
+========================= */
+
+.contact-hero{
+  padding-top: 76px; /* offset for fixed nav */
+  background: var(--paper);
+  border-bottom: 1px solid rgba(11,15,22,0.06);
+}
+
+.contact-hero-inner{
+  padding: 86px 18px 92px;
+}
+
+/* Head */
+.contact-head{
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.contact-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: clamp(34px, 3.6vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.6px;
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+.contact-sub{
+  max-width: 66ch;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(11,15,22,0.62);
+}
+
+/* Grid layout */
+.contact-grid{
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* Left info */
+.contact-info{
+  padding-top: 10px;
+}
+
+.contact-block{
+  margin-bottom: 34px;
+}
+
+.contact-kicker{
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(86,132,187,0.75);
+  margin-bottom: 10px;
+}
+
+.contact-company{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 18px;
+  color: rgba(11,15,22,0.92);
+  margin-bottom: 4px;
+}
+
+.contact-muted{
+  font-size: 14px;
+  color: rgba(11,15,22,0.65);
+}
+
+.contact-vp{
+  margin-top: 18px;
+}
+
+.contact-vp-title{
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(11,15,22,0.9);
+  margin-bottom: 4px;
+}
+
+.contact-vp-text{
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba(11,15,22,0.62);
+  max-width: 50ch;
+}
+
+/* Right card */
+.contact-card{
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid rgba(11,15,22,0.08);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  padding: 34px 34px 30px;
+}
+
+.contact-form .contact-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.contact-form .field{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.contact-form label{
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: rgba(86,132,187,0.75);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea{
+  width: 100%;
+  border: 1px solid rgba(86,132,187,0.25);
+  background: #f6f9fc;
+  padding: 12px 12px;
+  font-size: 14px;
+  outline: none;
+  border-radius: 2px;
+  color: rgba(11,15,22,0.9);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form textarea{
+  resize: vertical;
+  min-height: 160px;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus{
+  border-color: rgba(86,132,187,0.45);
+  box-shadow: 0 0 0 3px rgba(86,132,187,0.12);
+}
+
+/* Button */
+.contact-btn{
+  width: 100%;
+  border: none;
+  background: #0b0f16;
+  color: #fff;
+  padding: 16px 18px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.contact-btn:hover{
+  background: #0a0d13;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .contact-grid{
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .contact-card{
+    padding: 28px 22px 24px;
+  }
+  .contact-form .contact-row{
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================
+   CONTACT – FAQ DROPDOWN
+========================= */
+
+.contact-faq{
+  background: #f4f7fb; /* same light section tone */
+  padding: 80px 0 90px;
+}
+
+.contact-faq-inner{
+  text-align: center;
+}
+
+.contact-faq-title{
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-size: 28px;
+  letter-spacing: -0.3px;
+  color: #0b0f16;
+  margin: 0 0 34px;
+}
+
+/* list */
+.contact-faq-list{
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+/* each dropdown card */
+.faq-item{
+  background: #ffffff;
+  border: 1px solid rgba(11,15,22,0.08);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* remove default marker */
+.faq-item > summary{
+  list-style: none;
+}
+.faq-item > summary::-webkit-details-marker{
+  display: none;
+}
+
+/* question bar */
+.faq-q{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 22px;
+  text-align: left;
+
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0b0f16;
+}
+
+/* subtle hover, same theme */
+.faq-q:hover{
+  background: rgba(11,15,22,0.02);
+}
+
+/* plus/minus icon */
+.faq-icon{
+  width: 18px;
+  height: 18px;
+  position: relative;
+  flex: 0 0 18px;
+  opacity: 0.7;
+}
+.faq-icon::before,
+.faq-icon::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  width:100%;
+  height:2px;
+  background:#0b0f16;
+  transform: translateY(-50%);
+}
+.faq-icon::after{
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* answer */
+.faq-a{
+  padding: 0 22px 18px;
+  text-align: left;
+}
+.faq-a p{
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(11,15,22,0.65);
+}
+
+/* open state */
+.faq-item[open] .faq-q{
+  padding-bottom: 14px;
+}
+.faq-item[open] .faq-icon::after{
+  transform: translateY(-50%) rotate(0deg); /* becomes minus */
+}
+
+/* spacing on mobile */
+@media (max-width: 640px){
+  .contact-faq{ padding: 64px 0 74px; }
+  .faq-q{ padding: 18px 18px; font-size: 14.5px; }
+  .faq-a{ padding: 0 18px 16px; }
+}
